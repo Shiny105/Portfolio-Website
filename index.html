@@ -6,11 +6,186 @@
 -->
 <html>
 	<head>
-		<title>Solid State by HTML5 UP</title>
+		<title>Chandni Patel Website</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<style>
+			.popup {
+				display: none;
+				position: fixed;
+				z-index: 9999;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: auto;
+				/* background-color: #F5F5DC; Solid dark blue background */
+			}
+
+			.popup-content {
+				background-color: #2e2d2d;
+				color: #ffffff;
+				margin: 10% auto; /* Reduced from 15% to show more content */
+				padding: 20px;
+				border: 1px solid #888;
+				width: 90%; /* Increased from 80% to use more screen space */
+				max-width: 800px; /* Increased for larger screens */
+				display: flex;
+				flex-direction: column;
+			}
+
+			.popup-image {
+				max-width: 300px; /* Adjust this value as needed */
+				height: auto;
+				align-self: center;
+				margin-bottom: 20px;
+			}
+
+			.popup-content h3 {
+				margin-top: 0;
+			}
+
+			.popup-content ul {
+				margin-top: 0;
+				padding-left: 20px;
+			}
+
+			.close {
+				color: #aaa;
+				float: right;
+				font-size: 28px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			.close:hover,
+			.close:focus {
+				color: black;
+				text-decoration: none;
+			}
+
+			#banner.custom-banner .highlight {
+				color: #00FFFF !important;
+				font-weight: bold !important;
+				display: inline-block !important;
+				animation: float 2s ease-in-out infinite !important;
+				font-size: 2.3em !important;
+				font-family: 'Brush Script MT', cursive;
+			}
+
+			@keyframes float {
+				0% {
+					transform: translateY(0px);
+				}
+				50% {
+					transform: translateY(-10px);
+				}
+				100% {
+					transform: translateY(0px);
+				}
+			}
+
+			.typing-cursor {
+				animation: blink 0.7s infinite;
+			}
+
+			@keyframes blink {
+				0% { opacity: 1; }
+				50% { opacity: 0; }
+				100% { opacity: 1; }
+			}
+
+			#typed-text {
+				font-family: 'Garamond', serif;
+				font-size: 2em; /* Increase overall font size */
+				line-height: 1.0; /* Increase line spacing */
+				text-align: center;
+			}
+
+			.wave {
+				animation-name: wave-animation;
+				animation-duration: 2.5s;
+				animation-iteration-count: infinite;
+				transform-origin: 70% 70%;
+				display: inline-block;
+				font-size: 1.4em; /* Adjust size of wave emoji */
+			}
+
+			@keyframes wave-animation {
+				0% { transform: rotate( 0.0deg) }
+				10% { transform: rotate(14.0deg) }
+				20% { transform: rotate(-8.0deg) }
+				30% { transform: rotate(14.0deg) }
+				40% { transform: rotate(-4.0deg) }
+				50% { transform: rotate(10.0deg) }
+				60% { transform: rotate( 0.0deg) }
+				100% { transform: rotate( 0.0deg) }
+			}
+			
+			.project-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.5em; /* Reduced gap between articles */
+			}
+
+			.project-grid article {
+				font-size: 0.7em; /* Reduce overall font size */
+				padding: 1em; /* Add padding inside each article */
+				background: rgba(255, 255, 255, 0.05); /* Optional: add a slight background for separation */
+				border-radius: 5px; /* Optional: rounded corners */
+				transition: all 0.1s ease;
+				/* background-color: #E6E6FA; */
+			}
+			.project-grid article:hover {
+				animation: float-fast 0.5s ease-in-out infinite;
+				box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+				transform: scale(1.05);
+			}
+
+			.project-grid article:nth-child(1) { background: linear-gradient(120deg, #4b8b8b 0%, #e2f4fc 100%); }
+			.project-grid article:nth-child(2) { background: linear-gradient(45deg, #ff9a9e 0%,  #fad0c4 100%); }
+			.project-grid article:nth-child(3) { background: linear-gradient(to top, #a8edea 0%, #ca4d75 100%); }
+			.project-grid article:nth-child(4) { background: linear-gradient(to top, #d299c2 0%, #f5edbc 100%); }
+			.project-grid article:nth-child(5) { background: linear-gradient(135deg, #8FBC8F 0%, #c3cfe2 100%); }
+			.project-grid article:nth-child(6) { background: linear-gradient(to top, #4e4e83 0%, #E6E6FA 100%); }
+
+			.project-grid .image img {
+				max-height: 200px; /* Limit image height */
+				width: 80%;
+				object-fit: cover; /* Ensure images cover area without distortion */
+			}
+
+			.project-grid h3.major {
+				font-size: 1.2em; /* Reduce title size */
+				margin-bottom: 0.5em;
+			}
+
+			.project-grid p, .project-grid ul {
+				font-size: 0.85em; /* Further reduce size of paragraph and list text */
+				margin-bottom: 0.5em;
+			}
+
+			.project-grid .special {
+				font-size: 0.9em; /* Reduce size of "Learn more" links */
+				padding: 0.3em 0.6em; /* Adjust padding of "Learn more" links */
+			}
+
+			@media screen and (max-width: 980px) {
+				.project-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+
+			@media screen and (max-width: 736px) {
+				.project-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
@@ -19,9 +194,9 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<h1><a href="index.html">Solid State</a></h1>
+						<!-- <h1><a href="index.html" style="font-family: 'Garamond', serif;">Chandni Patel</a></h1> -->
 						<nav>
-							<a href="#menu">Menu</a>
+							<a href="#menu" style="font-family: 'Garamond', serif;">Menu</a>
 						</nav>
 					</header>
 
@@ -30,24 +205,21 @@
 						<div class="inner">
 							<h2>Menu</h2>
 							<ul class="links">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="generic.html">Generic</a></li>
-								<li><a href="elements.html">Elements</a></li>
-								<li><a href="#">Log In</a></li>
-								<li><a href="#">Sign Up</a></li>
+								<li><a href="#one">Intro</a></li>
+								<li><a href="#two">Experience</a></li>
+								<li><a href="#three">Project</a></li>
+								<li><a href="#footer">Contact Me</a></li>
 							</ul>
 							<a href="#" class="close">Close</a>
 						</div>
 					</nav>
 
 				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<div class="logo"><span class="icon fa-gem"></span></div>
-							<h2>Chandni Patel</h2>
-							<p>Computer Engineer</p>
-						</div>
-					</section>
+				<section id="banner" class="custom-banner">
+					<div class="inner">
+						<div id="typed-text"></div>
+					</div>
+				</section>
 
 				<!-- Wrapper -->
 					<section id="wrapper">
@@ -55,78 +227,197 @@
 						<!-- One -->
 							<section id="one" class="wrapper spotlight style1">
 								<div class="inner">
-									<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+									<a class="image"><img src="images/my pic 1.jpg" alt="Chandni Patel" /></a>
 									<div class="content">
-										<h2 class="major">Introduction</h2>
-										<p>A recent graduate with a Bachelor of Science in Computer Engineering and a minor in Mathematics from the University of Texas at Arlington, 
+										<h2 class="major" style="font-family: 'Garamond', serif;">Introduction</h2>
+										<p style="font-size:90%">A recent graduate with a Bachelor of Science in Computer Engineering and a minor in Mathematics from the University of Texas at Arlington, 
 											I bring a strong foundation in both hardaware and software aspects of computing. My academic projects, including a dual-channel waveform 
 											generator and a self-balancing robot, demonstrate my hands-on experience with embedded systems and FGPA design. Combined with my 
 											internship at Renesas Electronics, where I developed linear models for thermal resistance prediction, I offer a unique blend of theoretical
-											knowledge and practical skills in areas such as RTL design, SoC developmenet, and machine learning. I am excited to apply my diverse skill 
+											knowledge and practical skills in areas such as RTL design, SoC development, and machine learning. I am excited to apply my diverse skill 
 											set, which spans languages like C++, Python, and System Verilog, to tackle challenging engineering problems and contribute to innovative 
 											solutions in the field of computer engineering.</p>
-											<a href="http://html5up.net" class="special">My Resume</a>
+											<a href="https://drive.google.com/file/d/1TEk1WFnpUZwRkTa5hKUUqcZGlqdeWYOg/view?usp=sharing" target="_blank">My Resume</a>
 									</div>
 								</div>
 							</section>
 
 						<!-- Two -->
-							<section id="two" class="wrapper alt spotlight style2">
+							<section id="two" class="wrapper alt spotlight style6">
 								<div class="inner">
-									<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+									<a><img src="images/Internship pic.png" alt="Chandni Patel" style="border-radius: 0; width: 500px; height: 300px; display: block; float: left; margin-right: 60px;"/></a>
 									<div class="content">
-										<h2 class="major">Experience</h2>
-										<p> Write here </p>
-										<a href="http://html5up.net" class="special">Learn more</a>
+										<h2 class="major" style="font-family: 'Garamond', serif;">Experience</h2>
+										<h3 style="font-size:85%"> Automation Simulation Intern | Renesas Electronics | June 2022 - August 2022 </h3>
+										<ul style="font-size:85%">
+											<li>Developed optimized linear regression models reducing prediction error for WLCSP thermal resistances (θja, θjc, θjb) by up to 78%, 
+												enabling significantly improved thermal management and package design decisions.</li>
+											<li>Performed comprehensive exploratory data analysis, applying log transformations to highly skewed variables like package size, enhancing model linearity 
+												and boosting predictive accuracy.</li>
+											<li>Implemented rigorous model evaluation techniques, including k-fold cross-validation and thorough residual analysis, ensuring selection of optimized
+												models with minimal overfitting and maximum generalization capability.</li>
+											<li>Conducted in-depth exploratory analysis, leveraging visualizations and domain knowledge to identify key predictors, encoded categorical variables as
+												dummy variables, and interpreted final model coefficients, providing insights into variable impacts on thermal resistances for design optimizations.</li>
+										</ul>
+										<a href="https://gist.github.com/djshahbydt/54ee4e474dfa6a96011c6d2b414cc03e#file-supervised-learning-thermal-resistance-prediction-wlcsp-08-09-2022-ipynb" target="_blank">Learn more</a>
 									</div>
 								</div>
 							</section>
 
-						<!-- Four -->
+						<!-- Three -->
 							<section id="three" class="wrapper alt style1">
 								<div class="inner">
-									<h2 class="major">Projects</h2>
-									<p> Write here </p>
-									<section class="features">
+									<h2 class="major" style="font-family: 'Garamond', serif;">Projects</h2>
+									<div class="project-grid">
 										<article>
-											<a href="#" class="image"><img src="images/pic04.jpg" alt="" /></a>
+											<a class="image"><img src="images/bell drone pic.jpg" alt="Chandni Patel" style="width: 400px; height: 200px;"/></a>
 											<h3 class="major">Bell 2023 Advanced Vertical Robotics Competition</h3>
-											<p>Write here</p>
-											<a href="#" class="special">Learn more</a>
+											<a href="#bell2023" class="special">Learn more</a>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
+											<a class="image"><img src="images/SoC pic.png" alt="Chandni Patel" style="width: 400px; height: 200px;"/></a>
 											<h3 class="major">Dual-Channel Waveform Generator</h3>
-											<p> Write here</p>
-											<a href="#" class="special">Learn more</a>
+											<a href="#dualchannel" class="special">Learn more</a>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+											<a class="image"><img src="images/emb2.jpg" alt="Chandni Patel" style="width: 400px; height: 200px;" /></a>
 											<h3 class="major">2-Wheeled, Seldf-Balancing Robot</h3>
-											<p>Write Here</p>
-											<a href="#" class="special">Learn more</a>
+											<a href="#selfbalancing" class="special">Learn more</a>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<a class="image"><img src="images/adl.png" alt="Chandni Patel" style="width: 400px; height: 200px;" /></a>
 											<h3 class="major">8-Bit, 4 Function Calculator</h3>
-											<p>Write here</p>
-											<a href="#" class="special">Learn more</a>
+											<a href="#calculator" class="special">Learn more</a>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<a class="image"><img src="images/emb1.jpg" alt="Chandni Patel" style="width: 400px; height: 200px;" /></a>
 											<h3 class="major">Pulse and Respiration Monitor</h3>
-											<p>Write here</p>
-											<a href="#" class="special">Learn more</a>
+											<a href="#pulsemonitor" class="special">Learn more</a>
 										</article>
 										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<a class="image"><img src="images/Filter pic.png" alt="Chandni Patel"  style="width: 400px; height: 200px;"/></a>
 											<h3 class="major">Butterworth Low-Pass Filter</h3>
-											<p>Write here</p>
-											<a href="#" class="special">Learn more</a>
+											<a href="#butterworth" class="special">Learn more</a>
 										</article>
-									</section>
+									</div>
+
 								</div>
 							</section>
+
+							<!-- Popup divs start here -->
+							<div id="bell2023" class="popup">
+								<div class="popup-content">
+									<span class="close">&times;</span>
+									<h3 class="major" style="font-family: 'Garamond', serif;">Bell 2023 Advanced Vertical Robotics Competition</h3>
+									<img src="images/bell drone pic.jpg" alt="Chandni Patel" class="popup-image">
+									<ul style="font-size:80%; font-family: 'Times New Roman', Times, serif">
+										<li>Designed and implemented a dual-channel waveform generator IP core on a Xilinx Zynq-7000 SoC FPGA development board, capable of generating DC, 
+											sine, triangle, sawtooth, and square waveforms with configurable amplitude, offset, frequency, and duty cycle.</li>
+										<li>Developed an AXI4-Lite IP module with eight 32-bit registers for waveform control, integrated with the processor subsystem via a Linux userspace 
+											application and kernel module, enabling easy configuration through shell commands.</li>
+										<li>Interfaced the FPGA with external analog components, including a dual-channel 12-bit DAC (MCP4822) controlled via a 100 kHz SPI interface, and 
+											op-amps (TLV2372) to generate ±2.5V analog waveform outputs at frequencies up to 50 kHz.</li>
+										<li>Performed hardware implementation, calibration, and testing using oscilloscopes, verifying waveform outputs and ensuring the system met 
+											specifications for potential applications in wireless communications systems.</li>
+									</ul>
+									<a href="https://drive.google.com/file/d/1tP1Clqck8ZmsOmW2yVLJ3veR4NxMdd-a/view?usp=sharing" target="_blank">Learn More</a>
+								</div>
+							</div>
+
+							<div id="dualchannel" class="popup">
+								<div class="popup-content">
+									<span class="close">&times;</span>
+									<h3 class="major" style="font-family: 'Garamond', serif;">Dual-Channel Waveform Generator</h3>
+									<img src="images/SoC pic.png" alt="Chandni Patel" class="popup-image">
+									<ul style="font-size:80%; font-family: 'Times New Roman', Times, serif">
+										<li>Designed and implemented a dual-channel waveform generator IP core on a Xilinx Zynq-7000 SoC FPGA development board, capable of generating DC, 
+											sine, triangle, sawtooth, and square waveforms with configurable amplitude, offset, frequency, and duty cycle.</li>
+										<li>Developed an AXI4-Lite IP module with eight 32-bit registers for waveform control, integrated with the processor subsystem via a Linux userspace 
+											application and kernel module, enabling easy configuration through shell commands.</li>
+										<li>Interfaced the FPGA with external analog components, including a dual-channel 12-bit DAC (MCP4822) controlled via a 100 kHz SPI interface, and 
+											op-amps (TLV2372) to generate ±2.5V analog waveform outputs at frequencies up to 50 kHz.</li>
+										<li>Performed hardware implementation, calibration, and testing using oscilloscopes, verifying waveform outputs and ensuring the system met 
+											specifications for potential applications in wireless communications systems.</li>
+									</ul>
+									<a href="https://drive.google.com/file/d/1UprLcu02Ezv6m618WDUVBDYrKVwvZ9Ia/view?usp=sharing" target="_blank">Learn More</a>
+								</div>
+							</div>
+
+							<div id="selfbalancing" class="popup">
+								<div class="popup-content">
+									<span class="close">&times;</span>
+									<h3 class="major" style="font-family: 'Garamond', serif;">2-Wheeled, Seldf-Balancing Robot</h3>
+									<img src="images/emb2.jpg" alt="Chandni Patel" class="popup-image">
+									<ul style="font-size:80%; font-family: 'Times New Roman', Times, serif">
+										<li>Integrated a TM4C123GH6PMI microcontroller, DRV8833 motor driver, MPU-6050 IMU, and optical encoders into a 3D-printed chassis, resulting in a 
+											functional two-wheeled robotic platform capable of self-balancing and controlled motion.</li>
+										<li>Developed firmware for real-time sensor data acquisition, implementing complementary filters for IMU data fusion and quadrature decoding for 
+											wheel odometry, enabling accurate state estimation and closed-loop control.</li>
+										<li>Implemented a cascaded control system with an inner PID loop for wheel velocity regulation and an outer LQR-based balance controller, achieving 
+											stable self-balancing and responsive trajectory following.</li>
+										<li>Created a multi-modal user interface combining UART-based command-line control and NEC protocol IR remote functionality, facilitating comprehensive 
+											system testing and user-friendly operation, with demonstrated stability in various motion scenarios.</li>
+									</ul>
+									<a href="https://drive.google.com/file/d/1tUJ2oqa9MWgJtg0FfCrp7WApJUkernXj/view?usp=sharing" target="_blank">Learn More</a>
+								</div>
+							</div>
+
+							<div id="calculator" class="popup">
+								<div class="popup-content">
+									<span class="close">&times;</span>
+									<h3 class="major" style="font-family: 'Garamond', serif;">8-Bit, 4 Function Calculator</h3>
+									<img src="images/adl.png" alt="Chandni Patel" class="popup-image">
+									<ul style="font-size:80%; font-family: 'Times New Roman', Times, serif">
+										<li>Designed and implemented an 8-bit, four-function calculator (addition, subtraction, multiplication, division) using SystemVerilog, demonstrating skills
+											 in digital logic design, binary arithmetic, and hardware description language coding.</li>
+										<li>Developed a control unit with finite state machine to manage calculator operations, showcasing abilities in sequential logic design and complex 
+											system control.</li>
+										<li>Created input/output interfaces for keypad input and seven-segment display output, including sign-magnitude representation and error handling, 
+											highlighting skills in hardware interfacing and signal processing.</li>
+										<li>Successfully synthesized and implemented the design on a DE10-Lite FPGA board, verifying functionality through comprehensive testing, which 
+											demonstrated proficiency in FPGA design flow, hardware debugging, and system verification.</li>
+									</ul>
+									<a href="https://drive.google.com/file/d/1oG67KsQRCKG0TOYuV4kSpKCCYswRq6Al/view?usp=sharing" target="_blank">Learn More</a>
+								</div>
+							</div>
+
+							<div id="pulsemonitor" class="popup">
+								<div class="popup-content">
+									<span class="close">&times;</span>
+									<h3 class="major" style="font-family: 'Garamond', serif;">Pulse and Respiration Monitor</h3>
+									<img src="images/emb2.jpg" alt="Chandni Patel" class="popup-image">
+									<ul style="font-size:80%; font-family: 'Times New Roman', Times, serif">
+										<li>Implemented PPG circuit for pulse detection and strain gauge Wheatstone bridge for respiration measurement. Used op-amps for signal conditioning, 
+											including high-pass and low-pass filtering for ADC interfacing.</li>
+										<li>Developed ARM microcontroller firmware with ISRs for timer-based sampling and UART communication. Utilized DMA for efficient data transfer from HX711 
+											24-bit ADC for respiratory measurements.</li>
+										<li>Created real-time algorithms for peak detection in PPG signals, pulse rate calculation using sliding window, and adaptive thresholding for
+											 respiration cycle detection and rate calculation.</li>
+										<li>Designed finite state machine for system control. Implemented UART command parser for user interface and alarm configuration. Integrated subsystems using 
+											HALs for modular structure. Added watchdog timers and error handling for system reliability.</li>
+									</ul>
+									<a href="https://drive.google.com/file/d/1hGJiOVFPAj6SfxwB1dsmdBKRH1WRbtTg/view?usp=sharing" target="_blank">Learn More</a>
+								</div>
+							</div>
+
+							<div id="butterworth" class="popup">
+								<div class="popup-content">
+									<span class="close">&times;</span>
+									<h3 class="major" style="font-family: 'Garamond', serif;">Butterworth Low-Pass Filter</h3>
+									<img src="images/Filter pic.png" alt="Chandni Patel" class="popup-image">
+									<ul style="font-size:80%; font-family: 'Times New Roman', Times, serif">
+										<li>Applied Fast Fourier Transform (FFT) to convert time-domain audio signal to frequency domain. Identified noise components in 3500-6000 Hz range 
+											through normalized DFT magnitude plots.</li>
+										<li>Designed 17th order Butterworth lowpass filter with cutoff frequency ωc ≈ 0.60π. Calculated filter parameters using equations: 
+											1 + (jωp / jΩc)^(2N) = 10^0.1 and 1 + (jωs / jΩc)^(2N) = 10^2.</li>
+										<li>Utilized MATLAB's butter() function to generate filter coefficients, then applied filter() function to process audio data. Implemented using 
+											difference equation: y[n] = b0x[n] + b1x[n-1] + ... - a1y[n-1] - a2y[n-2] - ...</li>
+										<li>Compared original and filtered DFT plots, demonstrating significant attenuation of frequencies above 3500 Hz. Resulting audio showed noticeable 
+											noise reduction while preserving speech intelligibility in lower frequency range.</li>
+									</ul>
+									<a href="https://drive.google.com/file/d/1fwjpAW7pPZomC3KKQ2bR5DYZU69wn2PP/view?usp=sharing" target="_blank">Learn More</a>
+								</div>
+							</div>
 
 					</section>
 
@@ -134,16 +425,16 @@
 					<section id="footer">
 						<div class="inner">
 							<h2 class="major">Get in touch</h2>
-							<p>Write here</p>
+							<p>Please contact me for any job opportunities.</p>
 							<ul class="contact">
 								<li class="icon solid fa-home">Austin, Texas, USA</li>
 								<li class="icon solid fa-phone">(512) 817-7254</li>
-								<li class="icon solid fa-envelope"><a href="#">chandnidp2001@gmail.com</a></li>
-								<li class="icon brands fa-linkedin"><a href="#">linkedin.com/in/cpblue</a></li>
-								<li class="icon brands fa-github"><a href="#">write here</a></li>
+								<li class="icon solid fa-envelope"><a href="mailto:chandnidp2001@gmail.com">chandnidp2001@gmail.com</a></li>
+								<li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/cpblue/" target="_blank">linkedin.com/in/cpblue</a></li>
+								<li class="icon brands fa-github"><a href="https://github.com/Shiny105" target="_blank">github.com/Shiny105</a></li>
 							</ul>
 							<ul class="copyright">
-								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="https://www.linkedin.com/in/cpblue/">Chandni Patel</a></li>
 							</ul>
 						</div>
 					</section>
@@ -157,6 +448,86 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+					var typedElement = document.getElementById('typed-text');
+					var textToType = [
+						"I'm ",
+						"<span class='highlight'>Chandni Patel</span>",
+						"<br><br>", // Double line break for more space
+						"I'm a Computer Engineer",
+						"<br><br>", // Double line break for more space
+						"Welcome to my Website! ",
+						"<span class='wave'>👋</span>"
+					];
+					var speed = 50; // Adjust typing speed (lower is faster)
+
+					typedElement.innerHTML = '<span></span><span class="typing-cursor">|</span>';
+					var contentElement = typedElement.getElementsByTagName('span')[0];
+					var cursorElement = typedElement.getElementsByTagName('span')[1];
+
+					var i = 0;
+					var j = 0;
+
+					function typeWriter() {
+						if (i < textToType.length) {
+							if (j < textToType[i].length) {
+								if (textToType[i].startsWith('<')) {
+									contentElement.innerHTML += textToType[i];
+									j = textToType[i].length;
+								} else {
+									contentElement.innerHTML += textToType[i][j];
+									j++;
+								}
+								setTimeout(typeWriter, speed);
+							} else {
+								i++;
+								j = 0;
+								setTimeout(typeWriter, speed);
+							}
+						}
+					}
+
+					typeWriter();
+				});
+			</script>
+
+			<script>
+				// Get all elements with class "special" (Learn more links)
+				var links = document.getElementsByClassName("special");
+
+				// Get all elements with class "popup"
+				var popups = document.getElementsByClassName("popup");
+
+				// Get all elements with class "close"
+				var closes = document.getElementsByClassName("close");
+
+				// Attach click event to each "Learn more" link
+				for (var i = 0; i < links.length; i++) {
+					links[i].onclick = function(e) {
+						e.preventDefault();
+						var popupId = this.getAttribute("href").substring(1);
+						document.getElementById(popupId).style.display = "block";
+					}
+				}
+
+				// Attach click event to each close button
+				for (var i = 0; i < closes.length; i++) {
+					closes[i].onclick = function() {
+						for (var j = 0; j < popups.length; j++) {
+							popups[j].style.display = "none";
+						}
+					}
+				}
+
+				// Close the popup when clicking outside of it
+				window.onclick = function(event) {
+					if (event.target.className === "popup") {
+						event.target.style.display = "none";
+					}
+				}
+			</script>
 
 	</body>
 </html>
